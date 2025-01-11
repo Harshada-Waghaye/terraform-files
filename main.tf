@@ -63,4 +63,9 @@ resource "aws_security_group" "web_sg" {
   tags = {
     Name = "insurance-SG"
   }
-}
+backend "s3" {
+    bucket         = "insurance_remote_backend"
+    key            = "terraform.tfstate"
+    region         = "ap-south-1"
+    dynamodb_table = "terraform-state-lock"
+  }
